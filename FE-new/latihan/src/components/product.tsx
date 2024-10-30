@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../store/store";
 import { productAllFetch } from "../store/product/produkFetch";
-import { apiFetch } from "../../utils/api";
 
 const Product = () => {
   const dispatch = useAppDispatch();
@@ -10,31 +9,10 @@ const Product = () => {
     (state: RootState) => state.productAllState
   );
   console.log("Products:", products);
-  // const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  // const [searchQuery, setSearchQuery] = useState("");
-
-  // const handleCategoryChange = (category: string | null) => {
-  //   setSelectedCategory(category);
-  //   fetchProduct();
-  // };
-
-  // const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   fetchProduct();
-  // };
 
  const fetchProduct = () => {
    dispatch(productAllFetch());
  };
-
-// const fetchProduct = () => {
-//   dispatch(
-//     productAllFetch({
-//       category: selectedCategory,
-//       searchQuery: searchQuery || "",
-//     })
-//   );
-// };
 
    useEffect(() => {
      fetchProduct();

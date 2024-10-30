@@ -1,5 +1,3 @@
-import React from "react";
-import Headers from "../../components/navbar";
 import Product from "../../components/product";
 
 const Home = () => {

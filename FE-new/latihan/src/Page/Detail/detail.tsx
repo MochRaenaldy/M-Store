@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { data, IProduct } from "../../types/product";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { productDetailFetch } from "../../store/product/produkFetch";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { addCart, ICart, saveCart } from "../../store/cart/cartSlice";

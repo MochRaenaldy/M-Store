@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
 const Headers = () => {
   const [searchQuery, setSearchQuery] = useState("");
