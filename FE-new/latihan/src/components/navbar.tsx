@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Headers = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  // const navigate = useNavigate();
+  const [search, setSearchQuery] = useState("");
+  const navigate = useNavigate();
   
-  // const handleSearch = (e: any) => {
-  //   e.preventDefault();
-  //   console.log("Searching for:", search);
-  //   navigate(`/search/${search}`);
-  // };
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    console.log("Searching for:", search);
+    navigate(`/search/${search}`);
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,11 +29,6 @@ const Headers = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -40,7 +36,7 @@ const Headers = () => {
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  Dropdown link
+                  Category
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -57,7 +53,7 @@ const Headers = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/cart">
-                  cart
+                  Cart
                 </a>
               </li>
             </ul>
@@ -67,16 +63,12 @@ const Headers = () => {
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
-                value={searchQuery}
+                value={search}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="btn btn-outline-success" type="submit">
-                <p>
-                  <a
-                    className="link-offset-2 link-underline link-underline-opacity-0"
-                    href={`/search/${searchQuery}`}>
-                    Search
-                  </a>
+              <button className="btn btn-outline-success" type="submit" onClick={handleSearch}>
+                <p className="text-black ">
+                  Search
                 </p>
               </button>
             </form>

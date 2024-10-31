@@ -1,32 +1,50 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { apiFetch } from "../../utils/api";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { productCategoryFetch } from "../store/product/produkFetch";
 
 export default function category() {
-  const [products, setProducts] = useState<object[]>([]);
-  const { category } = useParams();
-  const location = useLocation();
-
-  async function getProducts() {
-    const x: { data: object[] } = await apiFetch.get(
-      `/product/category/${category}`
+    const dispatch = useAppDispatch();
+    const params = useParams();
+    const { dataCategory, isloadingCategory, errorCategory } = useAppSelector(
+      (state) => state.productCategoryState
     );
-    console.log("asdks", x.data);
-    setProducts([...x.data]);
-  }
 
-  useEffect(() => {
-    getProducts();
-  }, [location]);
+    useEffect(() => {
+      dispatch(productCategoryFetch(params.category as string));
+    }, [params.category]);
 
-  useMemo(() => {
-    console.log("products", products);
-  }, [products]);
+    if (isloadingCategory) {
+      return <div>Loading...</div>;
+    }
+    if (errorCategory) {
+      return <div>Error: {errorCategory}</div>;
+    }
+
+  // const [products, setProducts] = useState<object[]>([]);
+  // const { category } = useParams();
+  // const location = useLocation();
+
+  // async function getProducts() {
+  //   const x: { data: object[] } = await apiFetch.get(
+  //     `/product/category/${category}`
+  //   );
+  //   console.log("asdks", x.data);
+  //   setProducts([...x.data]);
+  // }
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, [location]);
+
+  // useMemo(() => {
+  //   console.log("products", products);
+  // }, [products]);
 
   return (
     <>
-      {products.length === 0 ? (
-        <h2>no products here!</h2>
+      {dataCategory?.length === 0 ? (
+        <h2>no data here!</h2>
       ) : (
        <div
       style={{
@@ -36,8 +54,8 @@ export default function category() {
         gap: "20px",
         padding: "20px",
       }}>
-      {products?.length > 0 &&
-        products?.map((product: any) => (
+      {dataCategory?.length > 0 &&
+        dataCategory?.map((product: any) => (
           <Link style={{ textDecoration: "none" }} to={`/detail/${product.id}`}>
             <div
               className="card"

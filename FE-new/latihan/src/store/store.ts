@@ -2,7 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   productAddReducer,
   productAllReducer,
+  productCategoryReducer,
   productDetailReducer,
+  productSearchReducer,
 } from "./product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import cartSlice from "./cart/cartSlice";
@@ -12,6 +14,8 @@ export const store = configureStore({
     productAllState: productAllReducer,
     productDetailState: productDetailReducer,
     productAddState: productAddReducer,
+    productSearchState: productSearchReducer,
+    productCategoryState: productCategoryReducer,
     cartState: cartSlice,
   },
 });

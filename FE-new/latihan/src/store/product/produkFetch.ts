@@ -6,28 +6,21 @@ export const productAllFetch = createAsyncThunk("product/all", async () => {
   return response;
 });
 
-// export const productAllFetch = createAsyncThunk(
-//   "product/all",
-//   async (category: any | null, searchQuery: any) => {
-//     try {
-//       let response;
-//       if (category && searchQuery) {
-//         response = await apiFetch.get(
-//           `/product/category/${category}?searchQuery=${searchQuery}`
-//         );
-//       } else if (category) {
-//         response = await apiFetch.get(`/product/category/${category}`);
-//       } else if (searchQuery) {
-//         response = await apiFetch.get(`/product/search/${searchQuery}`);
-//       } else {
-//         response = await apiFetch.get("/product");
-//       }
-//       return response;
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
-// );
+export const productSearchFetch = createAsyncThunk(
+  "product/search",
+  async (name: string) => {
+    const response = await apiFetch.get("/product/search/" + name);
+    return response;
+  }
+)
+
+export const productCategoryFetch = createAsyncThunk(
+  "product/category",
+  async (category: string) => {
+    const response = await apiFetch.get("/product/category/" + category);
+    return response;
+  }
+)
 
 export const productDetailFetch = createAsyncThunk(
   "product/detail",

@@ -48,8 +48,8 @@ const Product = () => {
                 <p className="card-text " style={{ color: "black" }}>
                   {product.desc}
                 </p>
-                <p className="card-text " style={{ color: "black" }}>
-                  {product.price}
+                <p className="mb-1">
+                  Rp.{product.price.toLocaleString("id")}
                 </p>
               </div>
             </div>

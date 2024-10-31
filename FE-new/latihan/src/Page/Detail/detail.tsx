@@ -11,9 +11,7 @@ const detail = () => {
     (state) => state.productDetailState
   );
 
-  const { dataCart} = useAppSelector(
-    (state) => state.cartState
-  )
+  const { dataCart } = useAppSelector((state) => state.cartState);
 
   const fetchDetailProduct = async () => {
     try {
@@ -27,22 +25,22 @@ const detail = () => {
     fetchDetailProduct();
   }, []);
 
-   const handleAddCart = () => {
-     {
-       const data: ICart = {
-         idProduct: dataDetail?.id,
-         name: dataDetail?.name,
-         price: dataDetail?.price,
-         image: dataDetail?.image,
-         quantity: 1,
-         totalPrice: dataDetail?.price * 1,
-       };
-       dispatch(addCart(data));
-       dispatch(saveCart());
-     }
-   };
+  const handleAddCart = () => {
+    {
+      const data: ICart = {
+        idProduct: dataDetail?.id,
+        name: dataDetail?.name,
+        price: dataDetail?.price,
+        image: dataDetail?.image,
+        quantity: 1,
+        totalPrice: dataDetail?.price * 1,
+      };
+      dispatch(addCart(data));
+      dispatch(saveCart());
+    }
+  };
 
-   console.log(dataCart);
+  console.log(dataCart);
 
   if (isLoadingDetail) {
     return (
@@ -83,6 +81,11 @@ const detail = () => {
           <h5 className="card-title" style={{ color: "black" }}>
             {dataDetail?.name}
           </h5>
+         
+            <p className="mb-1">
+              Rp.{dataDetail.price.toLocaleString("id-ID")}
+            </p>
+          
           <p className="card-text " style={{ color: "black" }}>
             {dataDetail?.desc}
           </p>

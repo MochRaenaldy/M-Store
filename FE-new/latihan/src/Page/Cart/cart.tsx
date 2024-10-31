@@ -60,11 +60,11 @@ const Cart: React.FC = () => {
          return (
            <Card className="cart-item mb-3" key={index}>
              <Row className="g-0 align-items-center">
-               <Col xs={3} className="p-3">
-                 <img
-                   src={item.image || "defaultImage.jpg"} // replace 'defaultImage.jpg' with your placeholder image path
+               <Col xs={3} className="p-1">
+                 <img 
+                   src={item.image || "defaultImage.jpg"}
                    alt={item.name}
-                   className="img-fluid cart-img"
+                   className="img-fluid cart-img w-50 h-100"
                  />
                </Col>
                <Col xs={5} className="p-3">
